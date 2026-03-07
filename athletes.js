@@ -50,7 +50,7 @@ window.ATHLETES = [
   {
   id: "daniel-karkosz",
   name: "Daniel Karkosz",
-  photo: "assets/athletes/placeholder-1.svg",
+  photo: "/assets/athletes/daniel-karkosz.jpg",
   bodyweight_kg: 60,
   pullup_added_weight_kg: 55,
   dip_added_weight_kg: 55,
@@ -65,8 +65,8 @@ window.ATHLETES = [
 },
   {
   id: "daniel-karkosz",
-  name: "Daniel Karkosz",
-  photo: "assets/athletes/placeholder-1.svg",
+  name: "Eliasz Bała",
+  photo: "assets/athletes/eliasz-bala.jpg",
   bodyweight_kg: 65,
   pullup_added_weight_kg: 50,
   dip_added_weight_kg: 80,
