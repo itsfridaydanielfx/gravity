@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gravity Warriors — Zasady</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-subpage">
+  <main class="subpage-layout">
+    <section class="subpage-screen">
+      <header class="subpage-header">
+        <a class="tool-btn tool-btn--large" href="index.html" aria-label="Powrót">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="subpage-brand">
+          <div class="subpage-kicker">Gravity Warriors</div>
+          <div class="subpage-title">Zasady i metodologia</div>
+        </div>
+        <a class="tool-btn tool-btn--large" href="generator.html" aria-label="Generator zawodnika">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l1.6 2.1 2.6.4.6 2.5 2.3 1.3-.8 2.5.8 2.5-2.3 1.3-.6 2.5-2.6.4L12 20.5l-1.6-2.1-2.6-.4-.6-2.5L4.9 14l.8-2.5-.8-2.5 2.3-1.3.6-2.5 2.6-.4L12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </a>
+      </header>
+
+      <section class="rules-grid rules-grid--clean">
+        <article class="subpage-card">
+          <h3>Jak liczone są punkty</h3>
+          <p>Scaled bodyweight = bodyweight ^ 0.67. Każdy raw score jest mnożony przez scale x10, a potem przez mnożnik ćwiczenia. Finalny wynik ćwiczenia jest zaokrąglany do 1 miejsca po przecinku.</p>
+        </article>
+        <article class="subpage-card">
+          <h3>Mnożniki ćwiczeń</h3>
+          <p>Pull-up 1.6 • Dip 1.2 • Muscle-up 2.0 • Bench 1.7 • Squat 1.1 • Deadlift 0.9 • OHP 2.2 • Biceps 2.8</p>
+        </article>
+        <article class="subpage-card">
+          <h3>Jaki wynik wpisujemy</h3>
+          <ul>
+            <li>Bench, squat, deadlift, OHP, biceps: 1RM lub ustalony PR.</li>
+            <li>Pull-up, dip, muscle-up: dodatkowy ciężar na jedno strict powtórzenie.</li>
+            <li>Overall wymaga kompletu wszystkich 8 bojów.</li>
+          </ul>
+        </article>
+        <article class="subpage-card">
+          <h3>Standard wykonania</h3>
+          <ul>
+            <li>Pull-up: pełen wyprost, broda nad drążkiem, bez kippingu.</li>
+            <li>Dip: pełen lockout, odpowiednia głębokość, bez odbijania.</li>
+            <li>Muscle-up: strict weighted standard.</li>
+            <li>Bench / squat / deadlift / OHP / biceps: jeden spójny standard dla wszystkich.</li>
+          </ul>
+        </article>
+        <article class="subpage-card">
+          <h3>Remisy</h3>
+          <p>Ten sam wynik = to samo miejsce. Kolejna pozycja przeskakuje naturalnie, np. 1, 2, 2, 4.</p>
+        </article>
+        <article class="subpage-card">
+          <h3>Ważne</h3>
+          <p>Jeśli chcesz zmienić metodologię, edytuj <strong>config.js</strong>. Nie koduj mnożników na sztywno w HTML.</p>
+        </article>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

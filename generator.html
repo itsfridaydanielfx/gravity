@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gravity Warriors — Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-subpage">
+  <main class="subpage-layout">
+    <section class="subpage-screen">
+      <header class="subpage-header">
+        <a class="tool-btn tool-btn--large" href="index.html" aria-label="Powrót">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="subpage-brand">
+          <div class="subpage-kicker">Gravity Warriors</div>
+          <div class="subpage-title">Generator zawodnika</div>
+        </div>
+        <a class="tool-btn tool-btn--large" href="zasady.html" aria-label="Zasady">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6.8A2.8 2.8 0 0 0 4 6.8v10.4A2.8 2.8 0 0 0 6.8 20H17.2A2.8 2.8 0 0 0 20 17.2V14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 12h4M8 16h6M14 4l6 6M20 4v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <section class="subpage-card">
+        <div class="section-label">Dane zawodnika</div>
+        <form id="generatorForm" class="form-grid form-grid--labels">
+          <div class="field full">
+            <label class="field-label" for="name">Nazwa zawodnika</label>
+            <input class="input" id="name" name="name" autocomplete="off">
+          </div>
+          <div class="field full">
+            <label class="field-label" for="photo">Ścieżka zdjęcia</label>
+            <input class="input" id="photo" name="photo" autocomplete="off">
+          </div>
+          <div class="field">
+            <label class="field-label" for="bodyweight_kg">Waga kg</label>
+            <input class="input" id="bodyweight_kg" type="number" step="0.1" min="0" name="bodyweight_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="pullup_added_weight_kg">Pull-up kg</label>
+            <input class="input" id="pullup_added_weight_kg" type="number" step="0.1" min="0" name="pullup_added_weight_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="dip_added_weight_kg">Dip kg</label>
+            <input class="input" id="dip_added_weight_kg" type="number" step="0.1" min="0" name="dip_added_weight_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="muscleup_added_weight_kg">Muscle-up kg</label>
+            <input class="input" id="muscleup_added_weight_kg" type="number" step="0.1" min="0" name="muscleup_added_weight_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="bench_kg">Bench kg</label>
+            <input class="input" id="bench_kg" type="number" step="0.1" min="0" name="bench_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="squat_kg">Squat kg</label>
+            <input class="input" id="squat_kg" type="number" step="0.1" min="0" name="squat_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="deadlift_kg">Deadlift kg</label>
+            <input class="input" id="deadlift_kg" type="number" step="0.1" min="0" name="deadlift_kg" placeholder="KG">
+          </div>
+          <div class="field">
+            <label class="field-label" for="ohp_kg">OHP kg</label>
+            <input class="input" id="ohp_kg" type="number" step="0.1" min="0" name="ohp_kg" placeholder="KG">
+          </div>
+          <div class="field full">
+            <label class="field-label" for="biceps_kg">Biceps kg</label>
+            <input class="input" id="biceps_kg" type="number" step="0.1" min="0" name="biceps_kg" placeholder="KG">
+          </div>
+        </form>
+      </section>
+
+      <section class="subpage-card">
+        <div class="section-label">Generated block</div>
+        <div class="copy-wrap">
+          <textarea class="textarea" id="generatedOutput" readonly></textarea>
+          <button class="btn" id="copyOutput" type="button">Copy block</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="scoring.js"></script>
+  <script src="generator.js"></script>
+</body>
+</html>
