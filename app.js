@@ -72,7 +72,10 @@
         <img class="avatar" src="${athlete.photo}" alt="${athlete.name}">
         <div class="athlete-main">
           <div>
-            <div class="athlete-name">${athlete.name}</div>
+            <div class="athlete-name-row">
+              <div class="athlete-name">${athlete.name}</div>
+              ${athlete.rank_position <= 3 ? `<span class="place-tag place-tag--${athlete.rank_position}">#${athlete.rank_position}</span>` : ''}
+            </div>
             <div class="athlete-subtitle">${subtitleForCategory(athlete, category)}</div>
           </div>
         </div>
