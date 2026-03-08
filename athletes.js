@@ -1,8 +1,8 @@
 window.ATHLETES = [
   {
-    id: 'michal-01',
-    name: 'Michał',
-    photo: '',
+    id: 'eliasz-bala',
+    name: 'Eliasz Bała',
+    photo: 'assets/athletes/eliasz-bala.jpg',
     bodyweight_kg: 78,
     pullup_added_weight_kg: 52.5,
     pullup_bodyweight_kg: 78,
@@ -24,9 +24,9 @@ window.ATHLETES = [
     updated_at: '2026-03-07T12:00:00Z'
   },
   {
-    id: 'kuba-01',
-    name: 'Kuba',
-    photo: '',
+    id: 'daniel-karkosz',
+    name: 'Daniel Karkosz',
+    photo: 'assets/athletes/daniel-karkosz.jpg',
     bodyweight_kg: 70,
     pullup_added_weight_kg: 60,
     pullup_bodyweight_kg: 70,
@@ -48,9 +48,9 @@ window.ATHLETES = [
     updated_at: '2026-03-07T12:00:00Z'
   },
   {
-    id: 'mateusz-01',
-    name: 'Mateusz',
-    photo: '',
+    id: 'michal-marszalek',
+    name: 'Michał Marszałek',
+    photo: 'assets/athletes/michal-marszalek.jpg',
     bodyweight_kg: 85,
     pullup_added_weight_kg: 45,
     pullup_bodyweight_kg: 85,
