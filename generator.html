@@ -6,7 +6,7 @@
   <title>Gravity Warriors — Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-subpage">
@@ -27,7 +27,8 @@
 
       <section class="subpage-card">
         <div class="section-label">Dane zawodnika</div>
-        <form id="generatorForm" class="form-grid form-grid--labels">
+        
+<form id="generatorForm" class="form-grid form-grid--labels">
           <div class="field full">
             <label class="field-label" for="name">Nazwa zawodnika</label>
             <input class="input" id="name" name="name" autocomplete="off">
@@ -36,43 +37,86 @@
             <label class="field-label" for="photo">Ścieżka zdjęcia</label>
             <input class="input" id="photo" name="photo" autocomplete="off">
           </div>
+
           <div class="field">
-            <label class="field-label" for="bodyweight_kg">Waga kg</label>
+            <label class="field-label" for="bodyweight_kg">Waga bazowa kg</label>
             <input class="input" id="bodyweight_kg" type="number" step="0.1" min="0" name="bodyweight_kg" placeholder="KG">
           </div>
+          <div class="field"></div>
+
           <div class="field">
             <label class="field-label" for="pullup_added_weight_kg">Pull-up kg</label>
             <input class="input" id="pullup_added_weight_kg" type="number" step="0.1" min="0" name="pullup_added_weight_kg" placeholder="KG">
           </div>
           <div class="field">
+            <label class="field-label" for="pullup_bodyweight_kg">Waga do Pull-up kg</label>
+            <input class="input" id="pullup_bodyweight_kg" type="number" step="0.1" min="0" name="pullup_bodyweight_kg" placeholder="KG">
+          </div>
+
+          <div class="field">
             <label class="field-label" for="dip_added_weight_kg">Dip kg</label>
             <input class="input" id="dip_added_weight_kg" type="number" step="0.1" min="0" name="dip_added_weight_kg" placeholder="KG">
           </div>
+          <div class="field">
+            <label class="field-label" for="dip_bodyweight_kg">Waga do Dip kg</label>
+            <input class="input" id="dip_bodyweight_kg" type="number" step="0.1" min="0" name="dip_bodyweight_kg" placeholder="KG">
+          </div>
+
           <div class="field">
             <label class="field-label" for="muscleup_added_weight_kg">Muscle-up kg</label>
             <input class="input" id="muscleup_added_weight_kg" type="number" step="0.1" min="0" name="muscleup_added_weight_kg" placeholder="KG">
           </div>
           <div class="field">
+            <label class="field-label" for="muscleup_bodyweight_kg">Waga do Muscle-up kg</label>
+            <input class="input" id="muscleup_bodyweight_kg" type="number" step="0.1" min="0" name="muscleup_bodyweight_kg" placeholder="KG">
+          </div>
+
+          <div class="field">
             <label class="field-label" for="bench_kg">Bench kg</label>
             <input class="input" id="bench_kg" type="number" step="0.1" min="0" name="bench_kg" placeholder="KG">
           </div>
+          <div class="field">
+            <label class="field-label" for="bench_bodyweight_kg">Waga do Bench kg</label>
+            <input class="input" id="bench_bodyweight_kg" type="number" step="0.1" min="0" name="bench_bodyweight_kg" placeholder="KG">
+          </div>
+
           <div class="field">
             <label class="field-label" for="squat_kg">Squat kg</label>
             <input class="input" id="squat_kg" type="number" step="0.1" min="0" name="squat_kg" placeholder="KG">
           </div>
           <div class="field">
+            <label class="field-label" for="squat_bodyweight_kg">Waga do Squat kg</label>
+            <input class="input" id="squat_bodyweight_kg" type="number" step="0.1" min="0" name="squat_bodyweight_kg" placeholder="KG">
+          </div>
+
+          <div class="field">
             <label class="field-label" for="deadlift_kg">Deadlift kg</label>
             <input class="input" id="deadlift_kg" type="number" step="0.1" min="0" name="deadlift_kg" placeholder="KG">
           </div>
           <div class="field">
+            <label class="field-label" for="deadlift_bodyweight_kg">Waga do Deadlift kg</label>
+            <input class="input" id="deadlift_bodyweight_kg" type="number" step="0.1" min="0" name="deadlift_bodyweight_kg" placeholder="KG">
+          </div>
+
+          <div class="field">
             <label class="field-label" for="ohp_kg">OHP kg</label>
             <input class="input" id="ohp_kg" type="number" step="0.1" min="0" name="ohp_kg" placeholder="KG">
           </div>
-          <div class="field full">
+          <div class="field">
+            <label class="field-label" for="ohp_bodyweight_kg">Waga do OHP kg</label>
+            <input class="input" id="ohp_bodyweight_kg" type="number" step="0.1" min="0" name="ohp_bodyweight_kg" placeholder="KG">
+          </div>
+
+          <div class="field">
             <label class="field-label" for="biceps_kg">Biceps kg</label>
             <input class="input" id="biceps_kg" type="number" step="0.1" min="0" name="biceps_kg" placeholder="KG">
           </div>
+          <div class="field">
+            <label class="field-label" for="biceps_bodyweight_kg">Waga do Biceps kg</label>
+            <input class="input" id="biceps_bodyweight_kg" type="number" step="0.1" min="0" name="biceps_bodyweight_kg" placeholder="KG">
+          </div>
         </form>
+
       </section>
 
       <section class="subpage-card">

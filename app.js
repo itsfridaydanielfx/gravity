@@ -8,6 +8,8 @@
   const nextCategoryBtn = document.getElementById('nextCategoryBtn');
   const filterWrap = filterToggle ? filterToggle.closest('.filter-trigger-wrap') : null;
 
+  const aggregateCategories = ['overall', 'street', 'barbell', 'arms'];
+
   function subtitleForCategory(athlete, category) {
     if (category === 'overall') return `${athlete.bodyweight_kg} kg • overall`;
     if (category === 'street') return `${athlete.bodyweight_kg} kg • street`;
@@ -35,12 +37,18 @@
     return `${Number(map[key] || 0).toFixed(1).replace(/\.0$/, '')} kg`;
   }
 
-  function detailItem(label, amount, points) {
+  function scoreLabelForCategory(athlete, category) {
+    if (aggregateCategories.includes(category)) return '';
+    return exerciseAmountLabel(athlete, category);
+  }
+
+  function detailItem(athlete, label, key, amount, points) {
+    const bw = athlete.exercise_bodyweights?.[key] || athlete.bodyweight_kg || 0;
     return `
       <div class="detail-item">
         <span class="detail-label">${label}</span>
         <strong class="detail-value">${amount}</strong>
-        <span class="detail-points">${Number(points).toFixed(1)} pkt</span>
+        <span class="detail-points">${Number(bw).toFixed(1).replace(/\.0$/, '')} kg BW • ${Number(points).toFixed(1)} pkt</span>
       </div>
     `;
   }
@@ -48,17 +56,26 @@
   function breakdownHtml(a) {
     return `
       <div class="detail-grid">
-        <div class="detail-item detail-item--meta"><span class="detail-label">Waga</span><strong class="detail-value">${a.bodyweight_kg} kg</strong><span class="detail-points">bodyweight</span></div>
-        ${detailItem('Pull-up', exerciseAmountLabel(a, 'pullup'), a.points.pullup)}
-        ${detailItem('Dip', exerciseAmountLabel(a, 'dip'), a.points.dip)}
-        ${detailItem('Muscle-up', exerciseAmountLabel(a, 'muscleup'), a.points.muscleup)}
-        ${detailItem('Bench', exerciseAmountLabel(a, 'bench'), a.points.bench)}
-        ${detailItem('Squat', exerciseAmountLabel(a, 'squat'), a.points.squat)}
-        ${detailItem('Deadlift', exerciseAmountLabel(a, 'deadlift'), a.points.deadlift)}
-        ${detailItem('OHP', exerciseAmountLabel(a, 'ohp'), a.points.ohp)}
-        ${detailItem('Biceps', exerciseAmountLabel(a, 'biceps'), a.points.biceps)}
+        <div class="detail-item detail-item--meta"><span class="detail-label">Waga bazowa</span><strong class="detail-value">${a.bodyweight_kg} kg</strong><span class="detail-points">domyślna / fallback</span></div>
+        ${detailItem(a, 'Pull-up', 'pullup', exerciseAmountLabel(a, 'pullup'), a.points.pullup)}
+        ${detailItem(a, 'Dip', 'dip', exerciseAmountLabel(a, 'dip'), a.points.dip)}
+        ${detailItem(a, 'Muscle-up', 'muscleup', exerciseAmountLabel(a, 'muscleup'), a.points.muscleup)}
+        ${detailItem(a, 'Bench', 'bench', exerciseAmountLabel(a, 'bench'), a.points.bench)}
+        ${detailItem(a, 'Squat', 'squat', exerciseAmountLabel(a, 'squat'), a.points.squat)}
+        ${detailItem(a, 'Deadlift', 'deadlift', exerciseAmountLabel(a, 'deadlift'), a.points.deadlift)}
+        ${detailItem(a, 'OHP', 'ohp', exerciseAmountLabel(a, 'ohp'), a.points.ohp)}
+        ${detailItem(a, 'Biceps', 'biceps', exerciseAmountLabel(a, 'biceps'), a.points.biceps)}
       </div>
     `;
+  }
+
+  function avatarMarkup(athlete) {
+    const photo = String(athlete.photo || '').trim();
+    if (photo && !/placeholder/i.test(photo)) {
+      return `<img class="avatar" src="${photo}" alt="${athlete.name}">`;
+    }
+    const initial = (athlete.name || '?').trim().charAt(0).toUpperCase();
+    return `<div class="avatar avatar-fallback">${initial}</div>`;
   }
 
   function createRow(athlete, category) {
@@ -66,10 +83,12 @@
     row.className = 'athlete-row';
     if (athlete.rank_position <= 3) row.classList.add(`top-${athlete.rank_position}`);
 
+    const scoreLabel = scoreLabelForCategory(athlete, category);
+
     row.innerHTML = `
       <button class="athlete-button" type="button" aria-expanded="false">
         <div class="rank-badge">#${athlete.rank_position}</div>
-        <img class="avatar" src="${athlete.photo}" alt="${athlete.name}">
+        ${avatarMarkup(athlete)}
         <div class="athlete-main">
           <div>
             <div class="athlete-name-row">
@@ -81,7 +100,7 @@
         </div>
         <div class="athlete-score">
           <div class="score-value">${scoreMarkup(athlete.ranking_value)}</div>
-          <div class="score-label">${athlete.rank_position <= 3 ? 'Elite' : 'Noob'}</div>
+          <div class="score-label">${scoreLabel || '&nbsp;'}</div>
         </div>
       </button>
       <div class="athlete-details hidden">
@@ -91,6 +110,15 @@
 
     const button = row.querySelector('.athlete-button');
     const details = row.querySelector('.athlete-details');
+    const img = row.querySelector('img.avatar');
+    if (img) {
+      img.addEventListener('error', () => {
+        const fallback = document.createElement('div');
+        fallback.className = 'avatar avatar-fallback';
+        fallback.textContent = (athlete.name || '?').trim().charAt(0).toUpperCase();
+        img.replaceWith(fallback);
+      });
+    }
     button.addEventListener('click', () => {
       const isHidden = details.classList.toggle('hidden');
       button.setAttribute('aria-expanded', String(!isHidden));
@@ -152,7 +180,7 @@
   function init() {
     initCategories();
     categorySelect.value = 'overall';
-    updatedVersion.textContent = window.SCoringConfig.version_name;
+    updatedVersion.textContent = window.SCoringConfig.versionName;
     renderRanking();
     initFilters();
     nextCategoryBtn?.addEventListener('click', cycleCategory);

@@ -13,6 +13,17 @@
     biceps: 'biceps_kg',
   };
 
+  const exerciseBodyweightMap = {
+    pullup: 'pullup_bodyweight_kg',
+    dip: 'dip_bodyweight_kg',
+    muscleup: 'muscleup_bodyweight_kg',
+    bench: 'bench_bodyweight_kg',
+    squat: 'squat_bodyweight_kg',
+    deadlift: 'deadlift_bodyweight_kg',
+    ohp: 'ohp_bodyweight_kg',
+    biceps: 'biceps_bodyweight_kg',
+  };
+
   function round(value, precision = CFG().roundingPrecision) {
     const factor = Math.pow(10, precision);
     return Math.round((value + Number.EPSILON) * factor) / factor;
@@ -22,14 +33,22 @@
     return Math.pow(bodyweight, CFG().allometricExponent);
   }
 
+  function getExerciseBodyweight(athlete, exerciseKey) {
+    const specificField = exerciseBodyweightMap[exerciseKey];
+    const specific = Number(athlete[specificField] || 0);
+    const base = Number(athlete.bodyweight_kg || 0);
+    return specific > 0 ? specific : base;
+  }
+
   function getRawScore(athlete, exerciseKey) {
-    const bwScaled = scaledBodyweight(athlete.bodyweight_kg);
+    const bodyweight = getExerciseBodyweight(athlete, exerciseKey);
+    const bwScaled = scaledBodyweight(bodyweight);
     const field = exerciseMap[exerciseKey];
     const value = Number(athlete[field] || 0);
     if (!bwScaled || !value) return 0;
 
     if (bodyweightLifts.includes(exerciseKey)) {
-      return (athlete.bodyweight_kg + value) / bwScaled;
+      return (bodyweight + value) / bwScaled;
     }
 
     return value / bwScaled;
@@ -42,11 +61,13 @@
   }
 
   function hasCompleteOverall(athlete) {
-    return Object.values(exerciseMap).every((field) => Number(athlete[field]) > 0) && Number(athlete.bodyweight_kg) > 0;
+    return Object.keys(exerciseMap).every((exerciseKey) => {
+      const resultField = exerciseMap[exerciseKey];
+      return Number(athlete[resultField]) > 0 && getExerciseBodyweight(athlete, exerciseKey) > 0;
+    });
   }
 
   function calculateAthlete(athlete) {
-    const scaled = scaledBodyweight(athlete.bodyweight_kg);
     const points = {
       pullup: getExercisePoints(athlete, 'pullup'),
       dip: getExercisePoints(athlete, 'dip'),
@@ -58,6 +79,17 @@
       biceps: getExercisePoints(athlete, 'biceps'),
     };
 
+    const exerciseBodyweights = {
+      pullup: getExerciseBodyweight(athlete, 'pullup'),
+      dip: getExerciseBodyweight(athlete, 'dip'),
+      muscleup: getExerciseBodyweight(athlete, 'muscleup'),
+      bench: getExerciseBodyweight(athlete, 'bench'),
+      squat: getExerciseBodyweight(athlete, 'squat'),
+      deadlift: getExerciseBodyweight(athlete, 'deadlift'),
+      ohp: getExerciseBodyweight(athlete, 'ohp'),
+      biceps: getExerciseBodyweight(athlete, 'biceps'),
+    };
+
     const street = round(points.pullup + points.dip + points.muscleup);
     const barbell = round(points.bench + points.squat + points.deadlift + points.ohp);
     const arms = round(points.biceps);
@@ -65,7 +97,8 @@
 
     return {
       ...athlete,
-      scaled_bodyweight: round(scaled, 3),
+      scaled_bodyweight: round(scaledBodyweight(Number(athlete.bodyweight_kg || 0)), 3),
+      exercise_bodyweights: exerciseBodyweights,
       points,
       street_score: street,
       barbell_score: barbell,
@@ -94,7 +127,7 @@
     const sorted = filtered.sort((a, b) => {
       const diff = getCategoryValue(b, category) - getCategoryValue(a, category);
       if (diff !== 0) return diff;
-      return a.bodyweight_kg - b.bodyweight_kg;
+      return Number(a.bodyweight_kg || 0) - Number(b.bodyweight_kg || 0);
     });
 
     let lastScore = null;
@@ -123,8 +156,10 @@
 
   window.GravityScoring = {
     exerciseMap,
+    exerciseBodyweightMap,
     round,
     scaledBodyweight,
+    getExerciseBodyweight,
     getRawScore,
     getExercisePoints,
     hasCompleteOverall,
