@@ -278,12 +278,25 @@ button, input, select, textarea { font: inherit; }
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .athlete-score {
-  text-align: left;
   min-width: 116px;
   padding-right: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: right;
+}
+.athlete-score--with-label {
+  gap: 2px;
+}
+.athlete-score--centered {
+  gap: 0;
 }
 
 .score-value {
@@ -302,6 +315,7 @@ button, input, select, textarea { font: inherit; }
   font-size: 9px;
   font-weight: 700;
   color: rgba(255,255,255,0.92);
+  white-space: nowrap;
 }
 
 .athlete-details {
@@ -401,7 +415,7 @@ button, input, select, textarea { font: inherit; }
   gap: 12px;
 }
 .form-grid .full { grid-column: 1 / -1; }
-.field { display: grid; gap: 8px; }
+.field { display: grid; gap: 8px; min-width: 0; }
 .field-label {
   font-size: 11px;
   letter-spacing: .16em;
@@ -418,6 +432,8 @@ button, input, select, textarea { font: inherit; }
   outline: none;
 }
 .input::placeholder { color: rgba(255,255,255,0.34); }
+.field--pair-left { grid-column: 1; }
+.field--pair-right { grid-column: 2; }
 .textarea {
   min-height: 220px;
   resize: vertical;
@@ -502,6 +518,24 @@ button, input, select, textarea { font: inherit; }
   .rules-grid,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-grid.form-grid--labels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .form-grid.form-grid--labels .full {
+    grid-column: 1 / -1;
+  }
+
+  .field-label {
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  .input, .textarea {
+    padding: 11px 12px;
   }
 }
 

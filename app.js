@@ -11,12 +11,12 @@
   const aggregateCategories = ['overall', 'street', 'barbell', 'arms'];
 
   function subtitleForCategory(athlete, category) {
-    if (category === 'overall') return `${athlete.bodyweight_kg} kg • overall`;
-    if (category === 'street') return `${athlete.bodyweight_kg} kg • street`;
-    if (category === 'barbell') return `${athlete.bodyweight_kg} kg • barbell`;
-    if (category === 'arms') return `${athlete.bodyweight_kg} kg • arms`;
     const current = window.SCoringConfig.categories.find((cat) => cat.key === category);
-    return `${athlete.bodyweight_kg} kg • ${current ? current.label : category}`;
+    const currentLabel = current ? current.label : category;
+
+    if (aggregateCategories.includes(category)) return currentLabel;
+
+    return `${exerciseAmountLabel(athlete, category)} • ${currentLabel}`;
   }
 
   function scoreMarkup(value) {
@@ -56,7 +56,7 @@
   function breakdownHtml(a) {
     return `
       <div class="detail-grid">
-        <div class="detail-item detail-item--meta"><span class="detail-label">Waga bazowa</span><strong class="detail-value">${a.bodyweight_kg} kg</strong><span class="detail-points">domyślna / fallback</span></div>
+        <div class="detail-item detail-item--meta"><span class="detail-label">Waga bazowa</span><strong class="detail-value">${a.bodyweight_kg} kg</strong></div>
         ${detailItem(a, 'Pull-up', 'pullup', exerciseAmountLabel(a, 'pullup'), a.points.pullup)}
         ${detailItem(a, 'Dip', 'dip', exerciseAmountLabel(a, 'dip'), a.points.dip)}
         ${detailItem(a, 'Muscle-up', 'muscleup', exerciseAmountLabel(a, 'muscleup'), a.points.muscleup)}
@@ -98,9 +98,9 @@
             <div class="athlete-subtitle">${subtitleForCategory(athlete, category)}</div>
           </div>
         </div>
-        <div class="athlete-score">
+        <div class="athlete-score ${scoreLabel ? 'athlete-score--with-label' : 'athlete-score--centered'}">
           <div class="score-value">${scoreMarkup(athlete.ranking_value)}</div>
-          <div class="score-label">${scoreLabel || '&nbsp;'}</div>
+          ${scoreLabel ? `<div class="score-label">${scoreLabel}</div>` : ''}
         </div>
       </button>
       <div class="athlete-details hidden">

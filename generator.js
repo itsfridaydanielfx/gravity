@@ -4,6 +4,15 @@
 
   const output = document.getElementById('generatedOutput');
   const copyBtn = document.getElementById('copyOutput');
+  const PHOTO_BASE_PATH = 'assets/athletes/';
+
+  function normalizePhotoName(photo) {
+    return String(photo || '')
+      .trim()
+      .replace(/\\/g, '/')
+      .replace(/^assets\/athletes\//i, '')
+      .replace(/^\/+/, '');
+  }
 
   function getFormData() {
     const fd = new FormData(form);
@@ -25,10 +34,13 @@
 
   function makeObjectText(data) {
     const id = (data.name || 'athlete').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'athlete';
+    const photoName = normalizePhotoName(data.photo);
+    const photoPath = photoName ? `${PHOTO_BASE_PATH}${photoName}` : `${PHOTO_BASE_PATH}placeholder-1.svg`;
+
     return `{
   id: "${id}",
   name: "${data.name || ''}",
-  photo: "${data.photo || 'assets/athletes/placeholder-1.svg'}",
+  photo: "${photoPath}",
   bodyweight_kg: ${data.bodyweight_kg},
   pullup_added_weight_kg: ${data.pullup_added_weight_kg},
   pullup_bodyweight_kg: ${data.pullup_bodyweight_kg},
@@ -59,11 +71,11 @@
   copyBtn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(output.value);
-      copyBtn.textContent = 'Copied';
-      setTimeout(() => { copyBtn.textContent = 'Copy block'; }, 1200);
+      copyBtn.textContent = 'Skopiowano';
+      setTimeout(() => { copyBtn.textContent = 'Skopiuj blok'; }, 1200);
     } catch {
-      copyBtn.textContent = 'Copy failed';
-      setTimeout(() => { copyBtn.textContent = 'Copy block'; }, 1200);
+      copyBtn.textContent = 'Błąd kopiowania';
+      setTimeout(() => { copyBtn.textContent = 'Skopiuj blok'; }, 1200);
     }
   });
 
