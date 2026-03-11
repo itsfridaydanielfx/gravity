@@ -290,6 +290,31 @@ button, input, select, textarea { font: inherit; }
   text-overflow: ellipsis;
 }
 
+
+.athlete-subtitle--split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.athlete-subtitle-left,
+.athlete-subtitle-right {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.athlete-subtitle-right {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.athlete-subtitle-left {
+  flex: 1 1 auto;
+}
+
 .athlete-score {
   min-width: 0;
   max-width: 100%;
@@ -302,6 +327,13 @@ button, input, select, textarea { font: inherit; }
 }
 .athlete-score--centered {
   gap: 0;
+}
+.score-meta {
+  margin-top: 2px;
+  font-size: 10px;
+  letter-spacing: .04em;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .score-value {

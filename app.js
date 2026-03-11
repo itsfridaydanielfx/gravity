@@ -14,9 +14,11 @@
     const current = window.SCoringConfig.categories.find((cat) => cat.key === category);
     const currentLabel = current ? current.label : category;
 
-    if (aggregateCategories.includes(category)) return currentLabel;
+    if (aggregateCategories.includes(category)) {
+      return `<div class="athlete-subtitle">${currentLabel}</div>`;
+    }
 
-    return `waga: ${exerciseBodyweightLabel(athlete, category)} • ciężar: ${exerciseAmountLabel(athlete, category)} • ${currentLabel}`;
+    return `<div class="athlete-subtitle">waga: ${exerciseBodyweightLabel(athlete, category)} • ${currentLabel}</div>`;
   }
 
   function scoreMarkup(value) {
@@ -101,11 +103,12 @@
               <div class="athlete-name">${athlete.name}</div>
               ${athlete.rank_position <= 3 ? `<span class="place-tag place-tag--${athlete.rank_position}">#${athlete.rank_position}</span>` : ''}
             </div>
-            <div class="athlete-subtitle">${subtitleForCategory(athlete, category)}</div>
+            ${subtitleForCategory(athlete, category)}
           </div>
         </div>
         <div class="athlete-score athlete-score--centered">
           <div class="score-value">${scoreMarkup(athlete.ranking_value)}</div>
+          ${!aggregateCategories.includes(category) ? `<div class="score-meta">ciężar: ${exerciseAmountLabel(athlete, category)}</div>` : ''}
         </div>
       </button>
       <div class="athlete-details hidden">
