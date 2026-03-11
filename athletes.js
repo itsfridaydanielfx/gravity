@@ -42,7 +42,7 @@ window.ATHLETES = [
   deadlift_bodyweight_kg: 0,
   ohp_kg: 0,
   ohp_bodyweight_kg: 0,
-  biceps_kg: 15,
+  biceps_kg: 0,
   biceps_bodyweight_kg: 0,
   created_at: "2026-03-11T16:56:33.789Z",
   updated_at: "2026-03-11T16:56:33.789Z"
@@ -66,7 +66,7 @@ window.ATHLETES = [
   deadlift_bodyweight_kg: 0,
   ohp_kg: 0,
   ohp_bodyweight_kg: 0,
-  biceps_kg: 15,
+  biceps_kg: 0,
   biceps_bodyweight_kg: 0,
   created_at: "2026-03-11T16:56:33.789Z",
   updated_at: "2026-03-11T16:56:33.789Z"
