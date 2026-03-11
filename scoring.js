@@ -60,11 +60,35 @@
     return round(points);
   }
 
+  const groupedExercises = {
+    street: ['pullup', 'dip', 'muscleup'],
+    barbell: ['bench', 'squat', 'deadlift', 'ohp'],
+    arms: ['biceps'],
+  };
+
+  function hasExerciseEntry(athlete, exerciseKey) {
+    const resultField = exerciseMap[exerciseKey];
+    return Number(athlete[resultField] || 0) > 0 && getExerciseBodyweight(athlete, exerciseKey) > 0;
+  }
+
+  function hasAnyEntryInExercises(athlete, exerciseKeys) {
+    return exerciseKeys.some((exerciseKey) => hasExerciseEntry(athlete, exerciseKey));
+  }
+
   function hasCompleteOverall(athlete) {
-    return Object.keys(exerciseMap).every((exerciseKey) => {
-      const resultField = exerciseMap[exerciseKey];
-      return Number(athlete[resultField]) > 0 && getExerciseBodyweight(athlete, exerciseKey) > 0;
-    });
+    return Object.keys(exerciseMap).every((exerciseKey) => hasExerciseEntry(athlete, exerciseKey));
+  }
+
+  function isEligibleForCategory(athlete, category) {
+    if (category === 'overall') {
+      return hasAnyEntryInExercises(athlete, Object.keys(exerciseMap));
+    }
+
+    if (groupedExercises[category]) {
+      return hasAnyEntryInExercises(athlete, groupedExercises[category]);
+    }
+
+    return hasExerciseEntry(athlete, category);
   }
 
   function calculateAthlete(athlete) {
@@ -110,7 +134,7 @@
 
   function getCategoryValue(calculated, category) {
     switch (category) {
-      case 'overall': return calculated.completeOverall ? calculated.total_points : -1;
+      case 'overall': return calculated.total_points;
       case 'street': return calculated.street_score;
       case 'barbell': return calculated.barbell_score;
       case 'arms': return calculated.arms_score;
@@ -120,9 +144,7 @@
 
   function rankAthletes(athletes, category = 'overall') {
     const calculated = athletes.map(calculateAthlete);
-    const filtered = category === 'overall'
-      ? calculated.filter((a) => a.completeOverall)
-      : calculated;
+    const filtered = calculated.filter((a) => isEligibleForCategory(a, category));
 
     const sorted = filtered.sort((a, b) => {
       const diff = getCategoryValue(b, category) - getCategoryValue(a, category);
@@ -163,6 +185,9 @@
     getRawScore,
     getExercisePoints,
     hasCompleteOverall,
+    hasExerciseEntry,
+    hasAnyEntryInExercises,
+    isEligibleForCategory,
     calculateAthlete,
     getCategoryValue,
     rankAthletes,
