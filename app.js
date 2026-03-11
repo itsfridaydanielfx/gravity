@@ -16,7 +16,7 @@
 
     if (aggregateCategories.includes(category)) return currentLabel;
 
-    return `${exerciseAmountLabel(athlete, category)} • ${currentLabel}`;
+    return `waga: ${exerciseBodyweightLabel(athlete, category)} • ciężar: ${exerciseAmountLabel(athlete, category)} • ${currentLabel}`;
   }
 
   function scoreMarkup(value) {
@@ -37,9 +37,17 @@
     return `${Number(map[key] || 0).toFixed(1).replace(/\.0$/, '')} kg`;
   }
 
-  function scoreLabelForCategory(athlete, category) {
-    if (aggregateCategories.includes(category)) return '';
-    return exerciseAmountLabel(athlete, category);
+  function exerciseBodyweightLabel(athlete, category) {
+    const bw = athlete.exercise_bodyweights?.[category] || athlete.bodyweight_kg || 0;
+    return `${Number(bw || 0).toFixed(1).replace(/\.0$/, '')} kg`;
+  }
+
+  function scoreMetaForCategory(athlete, category) {
+    if (aggregateCategories.includes(category)) return null;
+    return {
+      bodyweight: exerciseBodyweightLabel(athlete, category),
+      lifted: exerciseAmountLabel(athlete, category),
+    };
   }
 
   function detailItem(athlete, label, key, amount, points) {
@@ -83,8 +91,6 @@
     row.className = 'athlete-row';
     if (athlete.rank_position <= 3) row.classList.add(`top-${athlete.rank_position}`);
 
-    const scoreLabel = scoreLabelForCategory(athlete, category);
-
     row.innerHTML = `
       <button class="athlete-button" type="button" aria-expanded="false">
         <div class="rank-badge">#${athlete.rank_position}</div>
@@ -98,9 +104,8 @@
             <div class="athlete-subtitle">${subtitleForCategory(athlete, category)}</div>
           </div>
         </div>
-        <div class="athlete-score ${scoreLabel ? 'athlete-score--with-label' : 'athlete-score--centered'}">
+        <div class="athlete-score athlete-score--centered">
           <div class="score-value">${scoreMarkup(athlete.ranking_value)}</div>
-          ${scoreLabel ? `<div class="score-label">${scoreLabel}</div>` : ''}
         </div>
       </button>
       <div class="athlete-details hidden">

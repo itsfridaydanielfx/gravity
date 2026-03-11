@@ -281,9 +281,9 @@ button, input, select, textarea { font: inherit; }
 
 .athlete-subtitle {
   margin-top: 4px;
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: none;
   color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
@@ -299,9 +299,6 @@ button, input, select, textarea { font: inherit; }
   align-items: flex-end;
   justify-content: center;
   text-align: right;
-}
-.athlete-score--with-label {
-  gap: 2px;
 }
 .athlete-score--centered {
   gap: 0;
@@ -321,13 +318,6 @@ button, input, select, textarea { font: inherit; }
 }
 .score-number { color: #fff; }
 .score-unit { color: var(--yellow-2); }
-.score-label {
-  margin-top: 2px;
-  font-size: 9px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.92);
-  white-space: nowrap;
-}
 
 .athlete-details {
   padding: 0 14px 16px 14px;
@@ -649,10 +639,6 @@ button, input, select, textarea { font: inherit; }
     font-size: 15px;
   }
 
-  .score-label {
-    font-size: 8px;
-    text-align: right;
-  }
 
   .form-grid.form-grid--labels {
     grid-template-columns: 1fr 1fr;
