@@ -71,4 +71,28 @@ window.ATHLETES = [
   created_at: "2026-03-12T18:53:33.435Z",
   updated_at: "2026-03-12T18:53:33.435Z"
 },
+  {
+  id: "michal-marszalek",
+  name: "Michał Marszałek",
+  photo: "assets/athletes/michal-marszalek.jpg",
+  bodyweight_kg: 66,
+  pullup_added_weight_kg: 47.5,
+  pullup_bodyweight_kg: 64,
+  dip_added_weight_kg: 65,
+  dip_bodyweight_kg: 64,
+  muscleup_added_weight_kg: 5,
+  muscleup_bodyweight_kg: 64,
+  bench_kg: 88.5,
+  bench_bodyweight_kg: 65,
+  squat_kg: 100,
+  squat_bodyweight_kg: 68,
+  deadlift_kg: 165,
+  deadlift_bodyweight_kg: 68,
+  ohp_kg: 0,
+  ohp_bodyweight_kg: 0,
+  biceps_kg: 0,
+  biceps_bodyweight_kg: 0,
+  created_at: "2026-03-12T19:01:22.255Z",
+  updated_at: "2026-03-12T19:01:22.255Z"
+},
 ];
