@@ -50,7 +50,7 @@ window.ATHLETES = [
   {
   id: "kacper-bala",
   name: "Kacper Bała",
-  photo: "assets/athletes/kacper-bala",
+  photo: "assets/athletes/kacper-bala.jpg",
   bodyweight_kg: 89,
   pullup_added_weight_kg: 50,
   pullup_bodyweight_kg: 85,
