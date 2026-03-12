@@ -48,9 +48,9 @@ window.ATHLETES = [
   updated_at: "2026-03-12T17:01:36.879Z"
 },
   {
-  id: "kacper",
-  name: "Kacper",
-  photo: "assets/athletes/Bała",
+  id: "kacper-bala",
+  name: "Kacper Bała",
+  photo: "assets/athletes/kacper-bala",
   bodyweight_kg: 89,
   pullup_added_weight_kg: 50,
   pullup_bodyweight_kg: 85,
