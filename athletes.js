@@ -47,4 +47,28 @@ window.ATHLETES = [
   created_at: "2026-03-12T17:01:36.879Z",
   updated_at: "2026-03-12T17:01:36.879Z"
 },
+  {
+  id: "kacper",
+  name: "Kacper",
+  photo: "assets/athletes/Bała",
+  bodyweight_kg: 89,
+  pullup_added_weight_kg: 50,
+  pullup_bodyweight_kg: 85,
+  dip_added_weight_kg: 61,
+  dip_bodyweight_kg: 85,
+  muscleup_added_weight_kg: 5,
+  muscleup_bodyweight_kg: 85,
+  bench_kg: 100,
+  bench_bodyweight_kg: 85,
+  squat_kg: 160,
+  squat_bodyweight_kg: 85,
+  deadlift_kg: 150,
+  deadlift_bodyweight_kg: 85,
+  ohp_kg: 60,
+  ohp_bodyweight_kg: 85,
+  biceps_kg: 40,
+  biceps_bodyweight_kg: 85,
+  created_at: "2026-03-12T18:53:33.435Z",
+  updated_at: "2026-03-12T18:53:33.435Z"
+},
 ];
