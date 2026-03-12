@@ -4,8 +4,8 @@ window.ATHLETES = [
   name: "Daniel Karkosz",
   photo: "assets/athletes/daniel-karkosz.jpg",
   bodyweight_kg: 60,
-  pullup_added_weight_kg: 60,
-  pullup_bodyweight_kg: 53,
+  pullup_added_weight_kg: 53,
+  pullup_bodyweight_kg: 60,
   dip_added_weight_kg: 57.5,
   dip_bodyweight_kg: 60,
   muscleup_added_weight_kg: 11.25,
@@ -20,8 +20,8 @@ window.ATHLETES = [
   ohp_bodyweight_kg: 60,
   biceps_kg: 15,
   biceps_bodyweight_kg: 60,
-  created_at: "2026-03-11T16:55:40.857Z",
-  updated_at: "2026-03-11T16:55:40.857Z"
+  created_at: "2026-03-12T18:47:38.896Z",
+  updated_at: "2026-03-12T18:47:38.896Z"
 },
 {
   id: "eliasz-bala",
