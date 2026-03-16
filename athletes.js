@@ -191,4 +191,29 @@ window.ATHLETES = [
   created_at: "2026-03-15T22:32:46.885Z",
   updated_at: "2026-03-15T22:32:46.885Z"
 },
+  {
+  id: "ivan-tsurkan",
+  name: "Ivan Tsurkan",
+  photo: "assets/athletes/ivan-tsurkan.jpg",
+  bodyweight_kg: 55,
+  pullup_added_weight_kg: 40,
+  pullup_bodyweight_kg: 55,
+  dip_added_weight_kg: 30,
+  dip_bodyweight_kg: 55,
+  muscleup_added_weight_kg: 0,
+  muscleup_bodyweight_kg: 0,
+  bench_kg: 70,
+  bench_bodyweight_kg: 55,
+  squat_kg: 0,
+  squat_bodyweight_kg: 0,
+  deadlift_kg: 60,
+  deadlift_bodyweight_kg: 55,
+  ohp_kg: 0,
+  ohp_bodyweight_kg: 0,
+  biceps_kg: 30,
+  biceps_bodyweight_kg: 55,
+  created_at: "2026-03-16T19:03:38.169Z",
+  updated_at: "2026-03-16T19:03:38.169Z"
+},
+
 ];
