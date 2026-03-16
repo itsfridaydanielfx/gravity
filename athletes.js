@@ -167,4 +167,28 @@ window.ATHLETES = [
   created_at: "2026-03-15T18:56:09.927Z",
   updated_at: "2026-03-15T18:56:09.927Z"
 },
+  {
+  id: "kamil-kotecki",
+  name: "Kamil Kotecki ",
+  photo: "assets/athletes/kamil-kotecki.jpg",
+  bodyweight_kg: 0,
+  pullup_added_weight_kg: 0,
+  pullup_bodyweight_kg: 0,
+  dip_added_weight_kg: 0,
+  dip_bodyweight_kg: 0,
+  muscleup_added_weight_kg: 0,
+  muscleup_bodyweight_kg: 0,
+  bench_kg: 122,
+  bench_bodyweight_kg: 77,
+  squat_kg: 140,
+  squat_bodyweight_kg: 80,
+  deadlift_kg: 0,
+  deadlift_bodyweight_kg: 0,
+  ohp_kg: 0,
+  ohp_bodyweight_kg: 0,
+  biceps_kg: 0,
+  biceps_bodyweight_kg: 0,
+  created_at: "2026-03-15T22:32:46.885Z",
+  updated_at: "2026-03-15T22:32:46.885Z"
+},
 ];
